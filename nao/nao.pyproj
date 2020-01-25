@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>d1b232c6-986b-456c-9b86-b0f0f8ae10cc</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>nao.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>..\..\..\python_sdk\pynaoqi-python2.7-2.1.4.13-win32-vs2010</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -21,16 +21,29 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="config.py">
+    <Compile Include="main.py" />
+    <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="nao.py" />
+    <Compile Include="utils.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|2.7-32" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="math_protocal.txt" />
+    <Content Include="protocol\01_Introduction.txt" />
+    <Content Include="protocol\02_Stress_mental_arithmetic.txt" />
+    <Content Include="protocol\03_Amusement.txt" />
+    <Content Include="sound\Quiz-Correct_Answer02-1.mp3" />
+    <Content Include="sound\Quiz-Correct_Answer02-3.wav" />
+    <Content Include="sound\Quiz-Wrong_Buzzer02-3.wav" />
+    <Content Include="sound\sample.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="protocol\" />
+    <Folder Include="sound\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
