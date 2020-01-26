@@ -18,7 +18,7 @@ def main(session):
 
     #Loads a file and launchs the playing 5 seconds later
 
-    fileId = audio_player_service.loadFile("/home/nao/Quiz-Correct_Answer02-3.wav")
+    fileId = audio_player_service.loadFile("/home/nao/.local/share/PackageManager/apps/.lastUploadedChoregrapheBehavior/behavior_1/../Quiz-Correct_Answer02-3.wav")
     audio_player_service.play(fileId)
     
 
