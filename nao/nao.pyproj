@@ -25,6 +25,9 @@
     <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="test2.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils.py">
       <SubType>Code</SubType>
     </Compile>
@@ -34,12 +37,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="protocol\01_Introduction.txt" />
+    <Content Include="protocol\02_Stress_Introduction.txt" />
     <Content Include="protocol\02_Stress_mental_arithmetic.txt" />
+    <Content Include="protocol\02_Stress_outroduction.txt" />
     <Content Include="protocol\03_Amusement.txt" />
+    <Content Include="sound\kansei2.wav" />
     <Content Include="sound\Quiz-Correct_Answer02-1.mp3" />
     <Content Include="sound\Quiz-Correct_Answer02-3.wav" />
     <Content Include="sound\Quiz-Wrong_Buzzer02-3.wav" />
     <Content Include="sound\sample.wav" />
+    <Content Include="sound\shine1.wav" />
+    <Content Include="sound\timecount_5s.wav" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="protocol\" />
