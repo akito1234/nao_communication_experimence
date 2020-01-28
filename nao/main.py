@@ -6,9 +6,10 @@ import codecs
 from utils import * 
 import qi
 import argparse
-import sys
 import os
 import time
+import csv
+
 #---------------------------------
 # 通信設定
 #---------------------------------
@@ -138,14 +139,16 @@ def amusement_introduction():
     return starttime, endtime
 
 def amusement_system_introduction(id):
-    if id == 6 or id == 21 or id == 26 or id == 43:
+    if id == 6 or id == 17 or id == 26 or id == 42 or id == 59 or id == 64:
         # 音を鳴らす．(ピロピロリーン)
         fileID = aup.post.playFile(shine_path, 1, 1)
         time.sleep(1)
-    elif id == 21 or id == 35 or id == 51:
+        print "Play"
+    elif id == 19 or id == 36 or id == 51 or id == 68:
         # 音を鳴らす．ポップな音
         fileID = aup.post.playFile(kansei_path, 1, 1)
         time.sleep(1)
+        print "Play"
     else:
         return 0
 
@@ -162,51 +165,50 @@ def from_file(tts, filename, encoding):
         judge_answer()
 
 
-   
-
 if __name__ == "__main__":
-    #tts.say("なにかはなして")
-    Neutral_Time = 300
-    # ------------------
-    # 会話を開始
-    # ------------------
+    Neutral_Time =300
+
     # 01.Introduction
-    #print "Experimence Start"
-    #print "Neutral Section Start"
-    ##print datetime.datetime.now()
-    ##time.sleep(Neutral_Time)
-    #print "Neutral Section Finished"
-    ## 02. Stress
-    ##s,e = introduction()
-    #print "stress intro start: "
-    #print s
-    #print "stress intro end : "
-    #print e
+    print "Experimence Start"
+    print "Neutral Section Start"
+    print datetime.datetime.now()
+    neutral_start = datetime.datetime.now()
+    time.sleep(Neutral_Time)
+    print datetime.datetime.now()
+    neutral_finish = datetime.datetime.now()
+    print "Neutral Section Finished"
+    
 
-    ##s,e = stress()
-    #print "stress status start: "
-    #print s
-    #print "stress status end : "
-    #print e
+    # 02. Stress
+    intro_start,intro_finish = introduction()
+    print "stress intro finished "
 
-    ##s,e = outroduction()
-    #print "stress outro start: "
-    #print s
-    #print "stress outro end : "
-    #print e
-    ## 02. Stress Finished
+    stress_start,stress_finish = stress()
+    print "stress archimetic finished "
 
-    ##tts.say("1分後に次のセクションに移動するよ")
+    outro_start,outro_finish = outroduction()
+    print "stress outro finished "
 
-    ##time.sleep(60)
+
+    # 02.5  Questionnaire
+    tts.say("1分はんごに次のセクションに移動するよ")
+    time.sleep(90)
+
 
     # 03. Amusement
-    s,e = amusement_introduction()
-    print "amusement start: "
-    print s
-    print "amusement end : "
-    print e
+    amusement_start,amusement_finish = amusement_introduction()
+    print "amusement finished "
 
 
-  
-   
+
+    # 実験情報を出力
+    with open('robot_communication_{}.csv'.format(datetime.datetime.now().strftime("%Y_%m_%d__%H_%M_%S")), 'wb') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["Section","StartDatetime","FinishDatetime"])
+        writer.writerow(['Neutral', neutral_start, neutral_finish])
+        writer.writerow(['Stress intro', intro_start, intro_finish])
+        writer.writerow(['Stress archimetic', stress_start, stress_finish])
+        writer.writerow(['Stress outro', outro_start, outro_finish])
+        writer.writerow(['Amusement', amusement_start, amusement_finish])
+
+    print u"アプリケーションを終了"
